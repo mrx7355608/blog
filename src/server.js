@@ -1,11 +1,12 @@
 import "dotenv/config";
 import app from "./app.js";
 import config from "../config/index.js";
+// import { connectToDatabase } from "../db/db.js";
 
 const { port } = config;
 
 function startApplication() {
-    // TODO: connect to database
+    // connectToDatabase(config.databaseUrl);
     app.listen(port, () => {
         console.log("express application started on port", port);
     });
