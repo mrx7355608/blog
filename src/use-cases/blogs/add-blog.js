@@ -1,4 +1,4 @@
-import makeBlog from "../../entities/blogs";
+import makeBlog from "../../entities/blogs/index.js";
 
 export default function buildAddBlogs({ blogsDb }) {
     return async function (blogData) {
