@@ -6,5 +6,6 @@ const router = Router();
 
 router.get("/", requestHandler(blogControllers.getBlogs));
 router.post("/", requestHandler(blogControllers.createBlog));
+router.patch("/publish/:id", requestHandler(blogControllers.patchPublishBlog));
 
 export default router;
