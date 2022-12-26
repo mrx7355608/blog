@@ -1,10 +1,10 @@
 export default function buildPatchPublishBlog({ publishBlogs }) {
     return async function (httpRequest) {
         const id = httpRequest.params.id;
-        const publishedBlog = await publishBlogs(id);
+        await publishBlogs(id);
         return {
             statusCode: 200,
-            body: { blog: publishedBlog },
+            body: { message: "Blog has been published" },
         };
     };
 }
