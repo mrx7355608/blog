@@ -4,11 +4,11 @@ export default function buildRemoveBlogs({ blogsDb }) {
             throw new Error("Provide blog id to remove that blog");
         }
 
-        const existingBlog = await blogsDb.findById({ id });
+        const existingBlog = await blogsDb.findById(id);
         if (!existingBlog) {
             throw new Error("Blog you are trying to delete does not exist");
         }
 
-        return await blogsDb.remove({ id });
+        return await blogsDb.remove(id);
     };
 }

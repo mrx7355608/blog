@@ -6,7 +6,7 @@ export default function buildEditBlogs({ blogsDb }) {
             throw new Error("Provide blog id to edit that blog");
         }
 
-        const existingBlog = await blogsDb.findById({ id });
+        const existingBlog = await blogsDb.findById(id);
         if (!existingBlog) {
             throw new Error("Blog you are trying to edit does not exist");
         }

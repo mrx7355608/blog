@@ -6,7 +6,7 @@ export default function buildUnPublishBlogs({ blogsDb }) {
             throw new Error("Provide blog id to unpublish");
         }
 
-        const existingBlog = await blogsDb.findById({ id });
+        const existingBlog = await blogsDb.findById(id);
         if (!existingBlog) {
             throw new Error("Blog you are trying to unpublish does not exist");
         }

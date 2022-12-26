@@ -16,7 +16,6 @@ export default function buildBlogEntity({ sanitizeHtml, arrayOfStringsOnly }) {
             throw new Error("Blog body is required!");
         }
         body = sanitizeHtml(body);
-        console.log(body);
 
         // Tags
         if (!tags) {
