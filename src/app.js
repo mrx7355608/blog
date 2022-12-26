@@ -13,6 +13,8 @@ app.use(helmet());
 app.use(cors());
 app.use(hpp());
 app.use(mongoSanitize());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use("/api/v1/blogs", blogRouter);
