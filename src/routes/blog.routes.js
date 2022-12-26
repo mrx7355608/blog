@@ -5,5 +5,6 @@ import blogControllers from "../controllers/blogs/index.js";
 const router = Router();
 
 router.get("/", requestHandler(blogControllers.getBlogs));
+router.post("/", requestHandler(blogControllers.createBlog));
 
 export default router;
