@@ -3,8 +3,8 @@ import buildDeleteBlog from "./delete-blog.js";
 import buildPatchUnPublishBlog from "./patch-unPublish-blog.js";
 import buildUpdateBlog from "./patch-blog.js";
 import buildCreateBlog from "./create-blog.js";
+import buildPatchPublishBlog from "./patch-publish-blog.js";
 import blogServices from "../../use-cases/blogs/index.js";
-import buildPatchPublishBlog from "./path-publish-blog.js";
 
 const {
     listBlogs,

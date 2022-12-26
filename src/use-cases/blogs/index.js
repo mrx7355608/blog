@@ -3,8 +3,9 @@ import buildAddBlogs from "./add-blog.js";
 import buildEditBlogs from "./edit-blog.js";
 import buildUnPublishBlogs from "./unPublish-blog.js";
 import buildRemoveBlogs from "./remove-blog.js";
-import buildBlogsDb from "../../data-access/blogs.js";
 import buildPublishBlog from "./publish-blog.js";
+
+import buildBlogsDb from "../../data-access/blogsDb.js";
 import BlogModel from "../../entities/blogs/blog.model.js";
 
 const blogsDb = buildBlogsDb({ BlogModel });
