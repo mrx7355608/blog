@@ -4,6 +4,7 @@ import buildEditBlogs from "./edit-blog.js";
 import buildUnPublishBlogs from "./unPublish-blog.js";
 import buildRemoveBlogs from "./remove-blog.js";
 import buildPublishBlog from "./publish-blog.js";
+import buildListOneBlog from "./list-one-blog.js";
 
 import buildBlogsDb from "../../data-access/blogsDb.js";
 import BlogModel from "../../entities/blogs/blog.model.js";
@@ -15,6 +16,7 @@ const editBlogs = buildEditBlogs({ blogsDb });
 const removeBlogs = buildRemoveBlogs({ blogsDb });
 const unPublishBlogs = buildUnPublishBlogs({ blogsDb });
 const publishBlogs = buildPublishBlog({ blogsDb });
+const listOneBlog = buildListOneBlog({ blogsDb });
 
 const blogServices = {
     listBlogs,
@@ -23,6 +25,7 @@ const blogServices = {
     removeBlogs,
     unPublishBlogs,
     publishBlogs,
+    listOneBlog,
 };
 
 export default blogServices;
