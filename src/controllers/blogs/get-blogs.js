@@ -12,10 +12,15 @@ export default function buildGetBlogs({ listBlogs }) {
         // Created a filter object
         const filter = {};
         if (title) filter.title = title;
-        if (tags) filter.tags = tags.split(",");
+        if (tags) {
+            const tagsArr = tags.split(",");
+            filter.tags = tagsArr.map((t) => t.toLowerCase());
+        }
 
         // Fetching data from database
-        const blogs = await listBlogs({ filter, limit, page, sort });
+        let blogs = await listBlogs({ filter, limit, page, sort });
+        // Only return published blogs
+        blogs = blogs.filter((blog) => blog.published);
 
         return {
             statusCode: 200,
