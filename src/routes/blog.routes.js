@@ -1,18 +1,24 @@
 import { Router } from "express";
 import requestHandler from "../utils/requestHandler.js";
-import blogControllers from "../controllers/blogs/index.js";
+import visitorsBlogController from "../controllers/blogs/index.js";
+import adminBlogController from "../controllers/admin-blogs/index.js";
 
 const router = Router();
 
-router.get("/", requestHandler(blogControllers.getBlogs));
-router.get("/:id", requestHandler(blogControllers.getOneBlog));
+router.get("/", requestHandler(visitorsBlogController.getBlogs));
+router.get("/:id", requestHandler(visitorsBlogController.getOneBlog));
 
 // ONLY FOR ADMIN
-router.post("/", requestHandler(blogControllers.createBlog));
-router.patch("/publish/:id", requestHandler(blogControllers.patchPublishBlog));
+router.get("/admin", requestHandler(adminBlogController.getBlogs));
+router.get("/admin/:id", requestHandler(adminBlogController.getOneBlog));
+router.post("/admin", requestHandler(adminBlogController.createBlog));
 router.patch(
-    "/un-publish/:id",
-    requestHandler(blogControllers.patchUnPublishBlog)
+    "/admin/publish/:id",
+    requestHandler(adminBlogController.patchPublishBlog)
+);
+router.patch(
+    "/admin/un-publish/:id",
+    requestHandler(adminBlogController.patchUnPublishBlog)
 );
 
 export default router;
