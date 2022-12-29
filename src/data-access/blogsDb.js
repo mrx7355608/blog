@@ -1,6 +1,6 @@
 export default function buildBlogsDb({ BlogModel }) {
     const findAll = async ({ filter, limit, sort, skip }) => {
-        let query = BlogModel.find({ published: true });
+        let query = BlogModel.find();
         if (filter.title) {
             query = query.where({
                 title: { $regex: new RegExp(filter.title, "i") },
