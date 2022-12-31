@@ -5,8 +5,9 @@ import buildCreateBlog from "../admin-blogs/create-blog.js";
 import buildPatchPublishBlog from "../admin-blogs/patch-publish-blog.js";
 import buildGetOneBlog from "../blogs/get-one-blog.js";
 // Blog services
-import blogServices from "../../use-cases/blogs/index.js";
+import blogServices from "../../use-cases/blogs/blogServices.js";
 import buildGetBlogsForAdmin from "./admin-get-blogs.js";
+
 const {
     listBlogs,
     listOneBlog,
