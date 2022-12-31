@@ -1,30 +1,25 @@
-export default function buildUserEntity({
-    hashPassword,
-    emailValidator,
-    sanitize,
-}) {
-    return async function ({ name, email, password }) {
+export default function buildUserEntity({ hash, emailValidator, sanitize }) {
+    return function ({ name, email, password }) {
         if (!name) {
             throw new Error("Name is required!");
         }
-        if (!email) {
-            throw new Error("Email is required!");
-        }
-        if (!password) {
-            throw new Error("Password is required!");
-        }
-
-        // Sanitize input
         name = sanitize(name);
-        email = sanitize(email);
-        password = sanitize(password);
-
         if (name.length < 4) {
             throw new Error("Name should be 4 characters long at least");
         }
+
+        if (!email) {
+            throw new Error("Email is required!");
+        }
+        email = sanitize(email);
         if (emailValidator(email) == false) {
             throw new Error("Invalid email");
         }
+
+        if (!password) {
+            throw new Error("Password is required!");
+        }
+        password = sanitize(password);
         if (password.length < 10) {
             throw new Error("Password should be 10 characters long at least");
         }
@@ -32,7 +27,10 @@ export default function buildUserEntity({
         return Object.freeze({
             getName: () => name,
             getEmail: () => email,
-            getHashedPassword: () => hashPassword(password),
+            hashPassword: async () => {
+                password = await hash(password, 10);
+            },
+            getPassword: () => password,
         });
     };
 }
