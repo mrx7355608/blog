@@ -4,25 +4,22 @@ export default function buildBlogEntity({ sanitizeHtml, arrayOfStringsOnly }) {
         if (!title) {
             throw new Error("Blog's title is missing");
         }
-        title = sanitizeHtml(title);
-        if (title.length < 8) {
-            throw new Error(
-                "Title too short, should be 8 characters long at least"
-            );
-        }
-
-        // Body
-        if (!body) {
-            throw new Error("Blog body is required!");
-        }
-        body = sanitizeHtml(body);
-
-        // Tags
         if (!tags) {
             throw new Error("Cannot create a blog without tags");
         }
+        if (!body) {
+            throw new Error("Blog body is required!");
+        }
+
+        // Sanitize input
+        title = sanitizeHtml(title);
+        body = sanitizeHtml(body);
         tags = tags.map((tag) => sanitizeHtml(tag));
         tags = tags.filter((tag) => tag !== "");
+
+        if (title.length < 8) {
+            throw new Error("Title should be 8 characters long at least");
+        }
         if (tags.length < 1) {
             throw new Error("Add one tag at least");
         }
