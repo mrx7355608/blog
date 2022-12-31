@@ -1,6 +1,6 @@
 import { Router } from "express";
 import requestHandler from "../utils/requestHandler.js";
-import adminBlogController from "../controllers/admin-blogs/index.js";
+import adminBlogController from "../controllers/admin-blogs/adminController.js";
 
 const router = Router();
 
