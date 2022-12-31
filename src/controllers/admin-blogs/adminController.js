@@ -1,8 +1,8 @@
-import buildDeleteBlog from "../admin-blogs/delete-blog.js";
-import buildPatchUnPublishBlog from "../admin-blogs/patch-unPublish-blog.js";
-import buildUpdateBlog from "../admin-blogs/patch-blog.js";
-import buildCreateBlog from "../admin-blogs/create-blog.js";
-import buildPatchPublishBlog from "../admin-blogs/patch-publish-blog.js";
+import buildDeleteBlog from "./delete-blog.js";
+import buildPatchUnPublishBlog from "./patch-unPublish-blog.js";
+import buildUpdateBlog from "./patch-blog.js";
+import buildCreateBlog from "./create-blog.js";
+import buildPatchPublishBlog from "./patch-publish-blog.js";
 import buildGetOneBlog from "../blogs/get-one-blog.js";
 // Blog services
 import blogServices from "../../use-cases/blogs/blogServices.js";
