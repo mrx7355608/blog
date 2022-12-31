@@ -10,6 +10,9 @@ export default function buildUnPublishBlogs({ blogsDb }) {
         if (!existingBlog) {
             throw new Error("Blog you are trying to unpublish does not exist");
         }
+        if (!existingBlog.published) {
+            throw new Error("Blog has not been published yet!");
+        }
 
         const blog = makeBlog(existingBlog);
         blog.unPublish();
