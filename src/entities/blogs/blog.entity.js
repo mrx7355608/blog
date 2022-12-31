@@ -2,7 +2,7 @@ export default function buildBlogEntity({ sanitizeHtml, arrayOfStringsOnly }) {
     return function ({ title, body, tags, published = false } = {}) {
         // Title
         if (!title) {
-            throw new Error("Blog's title is missing");
+            throw new Error("Blog title is required!");
         }
         title = sanitizeHtml(title);
         if (title.length < 8) {
