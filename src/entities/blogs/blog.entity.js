@@ -13,8 +13,17 @@ export default function buildBlogEntity({ sanitizeHtml, arrayOfStringsOnly }) {
         if (!tags) {
             throw new Error("Cannot create a blog without tags");
         }
-        tags = tags.map((tag) => sanitizeHtml(tag));
-        tags = tags.filter((tag) => tag !== "");
+        if (typeof tags === "string") {
+            tags = [tags];
+        }
+
+        // Sanitize and convert tag to lower case
+        tags = tags.map((tag) => {
+            tag = sanitizeHtml(tag);
+            return tag.toLowerCase();
+        });
+        tags = tags.filter((tag) => tag !== ""); // Filter empty tags
+
         if (tags.length < 1) {
             throw new Error("Add one tag at least");
         }
