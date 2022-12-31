@@ -4,7 +4,9 @@ import hpp from "hpp";
 import cors from "cors";
 import morgan from "morgan";
 import mongoSanitize from "express-mongo-sanitize";
+// Routers
 import blogRouter from "./routes/blog.routes.js";
+import adminRouter from "./routes/admin.routes.js";
 
 const app = express();
 
@@ -18,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use("/api/v1/blogs", blogRouter);
+app.use("/api/v1/admin/blogs", adminRouter);
 
 // Catch 404
 app.use(function (req, res, next) {
