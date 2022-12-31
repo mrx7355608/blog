@@ -11,7 +11,8 @@ export default function buildEditBlogs({ blogsDb }) {
             throw new Error("Blog you are trying to edit does not exist");
         }
 
-        const blog = makeBlog({ ...existingBlog, ...changes });
+        const newData = Object.assign(existingBlog, changes);
+        const blog = makeBlog(newData);
         return await blogsDb.update(id, {
             title: blog.getTitle(),
             body: blog.getBody(),
