@@ -1,4 +1,4 @@
-import buildBlogEntity from "./blog.js";
+import buildBlogEntity from "./blog.entity.js";
 import sanitizeHtml from "sanitize-html";
 
 const arrayOfStringsOnly = (array) => {
