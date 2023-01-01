@@ -8,6 +8,7 @@ import passport from "passport";
 import session from "express-session";
 import connectMongoDbSession from "connect-mongodb-session";
 import appConfig from "../config/appConfig.js";
+import passportSetup from "./utils/passportSetup.js";
 
 // Routers
 import blogRouter from "./routes/blog.routes.js";
@@ -41,6 +42,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+passportSetup(passport);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
