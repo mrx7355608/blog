@@ -7,7 +7,7 @@ import mongoSanitize from "express-mongo-sanitize";
 import passport from "passport";
 import session from "express-session";
 import connectMongoDbSession from "connect-mongodb-session";
-import appConfig from "../config/appConfig";
+import appConfig from "../config/appConfig.js";
 
 // Routers
 import blogRouter from "./routes/blog.routes.js";
