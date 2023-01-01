@@ -1,4 +1,4 @@
-import makeUser from "../../entities/users/buildUserEntity";
+import makeUser from "../../entities/users/buildUserEntity.js";
 
 export default function buildAddUser({ usersDb }) {
     return async function (userData) {
