@@ -2,8 +2,17 @@ import { Router } from "express";
 import requestHandler from "../utils/requestHandler.js";
 import adminController from "../controllers/admin/adminController.js";
 import passport from "passport";
+import rateLimiter from "express-rate-limit";
 
 const router = Router();
+
+const adminLoginLimiter = rateLimiter({
+    windowMs: 60 * 60 * 1000,
+    max: 10,
+    legacyHeaders: false,
+    message: "Too many failed login attempts, try again later",
+    standardHeaders: false,
+});
 
 // Only allow authenticated requests
 router.use(function (req, res, next) {
@@ -26,7 +35,7 @@ router.patch(
 );
 
 // Auth
-router.post("/login", function (req, res, next) {
+router.post("/login", adminLoginLimiter, function (req, res, next) {
     passport.authenticate("local", function (err, user, info) {
         if (err) return next(err);
         if (info) return res.status(400).json({ error: info.message });
