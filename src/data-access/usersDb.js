@@ -1,4 +1,6 @@
-export default function buildUsersDb({ UserModel }) {
+import UserModel from "../entities/users/user.model.js";
+
+export default function buildUsersDb() {
     return {
         insert,
         findAll,

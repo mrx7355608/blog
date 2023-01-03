@@ -1,9 +1,8 @@
 import { Strategy } from "passport-local";
-import UserModel from "../entities/users/user.model.js";
 import bcrypt from "bcryptjs";
 import buildUsersDb from "../data-access/usersDb.js";
 
-const usersDb = buildUsersDb({ UserModel });
+const usersDb = buildUsersDb();
 
 export default function (passport) {
     passport.use(

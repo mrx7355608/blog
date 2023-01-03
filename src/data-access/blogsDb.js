@@ -1,4 +1,6 @@
-export default function buildBlogsDb({ BlogModel }) {
+import BlogModel from "../entities/blogs/blog.model.js";
+
+export default function buildBlogsDb() {
     const findAll = async ({ filter, limit, sort, skip }) => {
         let query = BlogModel.find();
         if (filter.title) {

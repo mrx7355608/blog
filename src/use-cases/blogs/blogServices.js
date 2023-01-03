@@ -7,9 +7,8 @@ import buildPublishBlog from "./publish-blog.js";
 import buildListOneBlog from "./list-one-blog.js";
 
 import buildBlogsDb from "../../data-access/blogsDb.js";
-import BlogModel from "../../entities/blogs/blog.model.js";
 
-const blogsDb = buildBlogsDb({ BlogModel });
+const blogsDb = buildBlogsDb();
 const listBlogs = buildListBlogs({ blogsDb });
 const addBlogs = buildAddBlogs({ blogsDb });
 const editBlogs = buildEditBlogs({ blogsDb });
