@@ -8,7 +8,7 @@ const router = Router();
 
 const adminLoginLimiter = rateLimiter({
     windowMs: 60 * 60 * 1000,
-    max: 10,
+    max: 5,
     legacyHeaders: false,
     message: "Too many failed login attempts, try again later",
     standardHeaders: false,
