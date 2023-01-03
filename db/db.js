@@ -10,3 +10,7 @@ export async function connectToDatabase(database_url) {
         process.exit(1);
     }
 }
+
+export function disconnectFromDatabase() {
+    mongoose.disconnect();
+}

@@ -11,7 +11,7 @@ export default function buildAddBlogs({ blogsDb }) {
             title: blog.getTitle(),
             body: blog.getBody(),
             tags: blog.getTags(),
-            pusblished: blog.isPublished(),
+            published: blog.isPublished(),
         });
     };
 }

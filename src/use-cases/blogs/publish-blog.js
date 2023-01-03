@@ -11,7 +11,7 @@ export default function buildPublishBlog({ blogsDb }) {
             throw new Error("Blog you are trying to publish does not exist");
         }
         if (existingBlog.published) {
-            throw new Error("Blog is already published dumbo");
+            throw new Error("Blog has been published already");
         }
 
         const blog = makeBlog(existingBlog);
