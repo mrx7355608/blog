@@ -3,6 +3,7 @@ import requestHandler from "../utils/requestHandler.js";
 import adminController from "../controllers/admin/adminController.js";
 import passport from "passport";
 import rateLimiter from "express-rate-limit";
+import onlyAdmin from "../middlewares/onlyAdmin.js";
 
 const router = Router();
 
@@ -15,11 +16,8 @@ const adminLoginLimiter = rateLimiter({
 });
 
 // Only allow authenticated requests
-router.use(function (req, res, next) {
-    if (req.url === "/login") return next();
-    if (req.user && req.user.role === "admin") return next();
-    return res.status(404).json({ error: "Page not found" });
-});
+router.use(onlyAdmin);
+
 // Blogs
 router.get("/blogs/", requestHandler(adminController.getBlogs));
 router.get("/blogs/:id", requestHandler(adminController.getOneBlog));

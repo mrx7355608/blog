@@ -1,1 +1,5 @@
-export default function (req, res, next) {}
+export default function (req, res, next) {
+    if (req.url === "/login") return next();
+    if (req.user && req.user.role === "admin") return next();
+    return res.status(404).json({ error: "Page not found" });
+}
