@@ -32,6 +32,10 @@ router.patch(
     requestHandler(adminController.patchUnPublishBlog)
 );
 
+// Users
+router.get("/users", requestHandler(adminController.getUsers));
+router.post("/users", requestHandler(adminController.postUser));
+
 // Auth
 router.post("/login", adminLoginLimiter, function (req, res, next) {
     passport.authenticate("local", function (err, user, info) {
@@ -43,9 +47,5 @@ router.post("/login", adminLoginLimiter, function (req, res, next) {
         });
     })(req, res, next);
 });
-
-// Users
-router.get("/users", requestHandler(adminController.getUsers));
-router.post("/users", requestHandler(adminController.postUser));
 
 export default router;
