@@ -3,9 +3,6 @@ export default function buildBlogEntity({ sanitizeHtml }) {
         // Sanitize data
         title = sanitizeHtml(title);
         body = sanitizeHtml(body);
-        tags = tags.map((tag) => sanitizeHtml(tag));
-        tags = tags.map((tag) => tag.toLowerCase()); // Convert to lowercase
-        tags = tags.filter((tag) => tag !== ""); // Filter empty tags
 
         if (!title) {
             throw new Error("Blog title is required!");
@@ -19,6 +16,10 @@ export default function buildBlogEntity({ sanitizeHtml }) {
         if (!tags) {
             throw new Error("Cannot create a blog without tags");
         }
+        if (typeof tags === "string") tags = [tags];
+        tags = tags.map((tag) => sanitizeHtml(tag));
+        tags = tags.filter((tag) => tag !== ""); // Filter empty tags
+        tags = tags.map((tag) => tag.toLowerCase()); // Convert to lowercase
         if (tags.length < 1) {
             throw new Error("Add one tag at least");
         }
