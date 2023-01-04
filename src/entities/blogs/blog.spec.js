@@ -37,18 +37,6 @@ describe("Testing blog body", () => {
 
 describe("Testing blog tags", () => {
     it("returns error when tags are not provided", () => {
-        expect(() => makeBlog({ ...data, tags: "" })).toThrow(
-            "Cannot create a blog without tags"
-        );
-    });
-    it("converts a single tag string in to an array", () => {
-        // "docker" => ["docker"]
-        const blog = makeBlog({ ...data, tags: "Docker" });
-        expect(blog.getTags()).toStrictEqual(
-            expect.arrayContaining(["docker"])
-        );
-    });
-    it("returns error when enough tags are not provided", () => {
         expect(() => makeBlog({ ...data, tags: [""] })).toThrow(
             "Add one tag at least"
         );

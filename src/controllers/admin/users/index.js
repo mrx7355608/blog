@@ -7,9 +7,9 @@ const { listUsers, addUser } = userServices;
 const postUser = buildPostUser({ addUser });
 const getUsers = buildGetUsers({ listUsers });
 
-const userControllers = {
+const adminUserSubController = {
     getUsers,
     postUser,
 };
 
-export default userControllers;
+export default adminUserSubController;
