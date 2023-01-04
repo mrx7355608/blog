@@ -6,7 +6,7 @@ import buildCreateBlog from "./create-blog.js";
 import buildPatchPublishBlog from "./patch-publish-blog.js";
 import buildGetOneBlog from "../../blogs/get-one-blog.js";
 
-import blogServices from "../../../use-cases/blogs/blogServices.js";
+import blogServices from "../../../use-cases/blogs/index.js";
 
 const getBlogs = buildGetBlogsForAdmin({
     listBlogs: blogServices.listBlogs,
