@@ -33,7 +33,7 @@ const patchBlog = buildUpdateBlog({
     editBlogs: blogServices.editBlogs,
 });
 
-const blogControllers = {
+const adminBlogSubControllers = {
     getBlogs,
     getOneBlog,
     createBlog,
@@ -44,4 +44,4 @@ const blogControllers = {
     patchBlog,
 };
 
-export default blogControllers;
+export default adminBlogSubControllers;
