@@ -5,6 +5,10 @@ export default function buildAddBlogs({ blogsDb }) {
         if (!blogData) {
             throw new Error("Blog data is missing");
         }
+        if (typeof blogData.tags === "string") {
+            blogData.tags = Array(blogData.tags);
+        }
+        blogData.tags = blogData.tags.map((t) => t.toLowerCase());
 
         const blog = makeBlog(blogData);
         return await blogsDb.insert({
