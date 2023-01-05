@@ -1,5 +1,5 @@
-import buildBlogEntity from "./blog.entity.js";
-import sanitizeHtml from "sanitize-html";
+import { Blog } from "./blog.entity.js";
+import sanitize from "sanitize-html";
 
-const makeBlog = buildBlogEntity({ sanitizeHtml });
+const makeBlog = Blog({ sanitize });
 export default makeBlog;

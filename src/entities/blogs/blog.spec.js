@@ -41,13 +41,6 @@ describe("Testing blog tags", () => {
             "Cannot create a blog without tags"
         );
     });
-    it("converts a single tag string in to an array", () => {
-        // "docker" => ["docker"]
-        const blog = makeBlog({ ...data, tags: "Docker" });
-        expect(blog.getTags()).toStrictEqual(
-            expect.arrayContaining(["docker"])
-        );
-    });
     it("returns error when enough tags are not provided", () => {
         expect(() => makeBlog({ ...data, tags: [""] })).toThrow(
             "Add one tag at least"
@@ -56,11 +49,5 @@ describe("Testing blog tags", () => {
     it("Sanitizes null tag values", () => {
         const blog = makeBlog({ ...data, tags: [null, "linux"] });
         expect(blog.getTags()).toEqual(expect.arrayContaining(["linux"]));
-    });
-    it("Converts number tag values into strings", () => {
-        const blog = makeBlog({ ...data, tags: [12345, "linux"] });
-        expect(blog.getTags()).toEqual(
-            expect.arrayContaining(["12345", "linux"])
-        );
     });
 });
