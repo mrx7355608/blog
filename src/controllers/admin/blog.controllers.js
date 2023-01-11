@@ -4,14 +4,14 @@ import buildPatchUnPublishBlog from "./patch-unPublish-blog.js";
 import buildUpdateBlog from "./patch-blog.js";
 import buildCreateBlog from "./create-blog.js";
 import buildPatchPublishBlog from "./patch-publish-blog.js";
-import buildGetOneBlog from "../blogs/get-one-blog.js";
+import buildAdminGetOneBlog from "./admin-get-one-blog.js";
 
 import blogServices from "../../use-cases/blogs/index.js";
 
 const getBlogs = buildGetBlogsForAdmin({
     listBlogs: blogServices.listBlogs,
 });
-const getOneBlog = buildGetOneBlog({
+const getOneBlog = buildAdminGetOneBlog({
     listOneBlog: blogServices.listOneBlog,
 });
 const createBlog = buildCreateBlog({
