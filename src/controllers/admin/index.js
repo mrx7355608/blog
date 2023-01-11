@@ -1,6 +1,6 @@
 // Controllers
-import adminBlogSubController from "./blog/index.js";
-import adminUserSubController from "./users/index.js";
+import adminBlogSubController from "./blog.controllers.js";
+import adminUserSubController from "./user.controllers.js";
 
 const adminController = {
     ...adminBlogSubController,
