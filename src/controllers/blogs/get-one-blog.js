@@ -3,7 +3,7 @@ export default function buildGetOneBlog({ listOneBlog }) {
         try {
             const id = httpRequest.params.id;
             const blog = await listOneBlog(id);
-            if (!blog.published && !httpRequest.user.role === "admin") {
+            if (!blog.published) {
                 return {
                     statusCode: 404,
                     body: { error: "Not found" },
