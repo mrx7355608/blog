@@ -6,6 +6,7 @@ export default function requestHandler(controller) {
             body: req.body,
             query: req.query,
             params: req.params,
+            user: req.user,
         };
         const response = await controller(httpRequest);
         return res.status(response.statusCode).json(response.body);

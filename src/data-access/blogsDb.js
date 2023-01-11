@@ -8,7 +8,7 @@ export default function buildBlogsDb() {
                 title: { $regex: new RegExp(filter.title, "i") },
             });
         }
-        if (filter.tags) {
+        if (filter.tags && !filter.tags.length < 1) {
             query = query.where({ tags: { $all: filter.tags } });
         }
 

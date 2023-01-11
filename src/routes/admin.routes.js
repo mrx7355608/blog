@@ -18,6 +18,12 @@ const adminLoginLimiter = rateLimiter({
 // Only allow authenticated requests
 router.use(onlyAdmin);
 
+router.get("/", function (req, res) {
+    req.user.password = undefined;
+    req.user.__v = undefined;
+    return res.status(200).json({ user: req.user });
+});
+
 // Blogs
 router.get("/blogs/", requestHandler(adminController.getBlogs));
 router.get("/blogs/:id", requestHandler(adminController.getOneBlog));
