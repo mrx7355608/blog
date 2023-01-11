@@ -18,7 +18,10 @@ const app = express();
 
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+	origin: appConfig.clientUrl,
+	credentials: true
+}));
 app.use(hpp());
 app.use(mongoSanitize());
 // sessions setup
