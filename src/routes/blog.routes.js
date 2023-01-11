@@ -1,10 +1,19 @@
 import { Router } from "express";
 import requestHandler from "../utils/requestHandler.js";
 import visitorsBlogController from "../controllers/blogs/index.js";
+import rateLimiter from "express-rate-limit";
 
 const router = Router();
 
-router.get("/", requestHandler(visitorsBlogController.getBlogs));
-router.get("/:id", requestHandler(visitorsBlogController.getOneBlog));
+const limiter = rateLimiter({
+    windowMs: 60 * 60 * 1000 * 2,
+    max: 10,
+    legacyHeaders: false,
+    message: { error: "Too many requests, try again later" },
+    standardHeaders: false,
+});
+
+router.get("/", limiter, requestHandler(visitorsBlogController.getBlogs));
+router.get("/:id", limiter, requestHandler(visitorsBlogController.getOneBlog));
 
 export default router;

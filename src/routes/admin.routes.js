@@ -6,12 +6,18 @@ import rateLimiter from "express-rate-limit";
 import onlyAdmin from "../middlewares/onlyAdmin.js";
 
 const router = Router();
-
+const limiter = rateLimiter({
+    windowMs: 60 * 60 * 1000 * 2,
+    max: 10,
+    legacyHeaders: false,
+    message: { error: "Too many requests, try again later" },
+    standardHeaders: false,
+});
 const adminLoginLimiter = rateLimiter({
     windowMs: 60 * 60 * 1000,
     max: 5,
     legacyHeaders: false,
-    message: "Too many failed login attempts, try again later",
+    message: { error: "Too many failed login attempts, try again later" },
     standardHeaders: false,
 });
 
@@ -25,21 +31,27 @@ router.get("/", function (req, res) {
 });
 
 // Blogs
-router.get("/blogs/", requestHandler(adminController.getBlogs));
-router.get("/blogs/:id", requestHandler(adminController.getOneBlog));
-router.post("/blogs/", requestHandler(adminController.createBlog));
-router.patch("/blogs/update/:id", requestHandler(adminController.patchBlog));
+router.get("/blogs/", limiter, requestHandler(adminController.getBlogs));
+router.get("/blogs/:id", limiter, requestHandler(adminController.getOneBlog));
+router.post("/blogs/", limiter, requestHandler(adminController.createBlog));
+router.patch(
+    "/blogs/update/:id",
+    limiter,
+    requestHandler(adminController.patchBlog)
+);
 router.patch(
     "/blogs/publish/:id",
+    limiter,
     requestHandler(adminController.patchPublishBlog)
 );
 router.patch(
     "/blogs/un-publish/:id",
+    limiter,
     requestHandler(adminController.patchUnPublishBlog)
 );
 
 // Users
-router.get("/users", requestHandler(adminController.getUsers));
+router.get("/users", limiter, requestHandler(adminController.getUsers));
 
 // Auth
 router.post("/login", adminLoginLimiter, function (req, res, next) {
