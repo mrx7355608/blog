@@ -1,6 +1,6 @@
 import { Router } from "express";
 import requestHandler from "../utils/requestHandler.js";
-import adminController from "../controllers/admin/adminController.js";
+import adminController from "../controllers/admin/index.js";
 import passport from "passport";
 import rateLimiter from "express-rate-limit";
 import onlyAdmin from "../middlewares/onlyAdmin.js";
@@ -40,7 +40,6 @@ router.patch(
 
 // Users
 router.get("/users", requestHandler(adminController.getUsers));
-router.post("/users", requestHandler(adminController.postUser));
 
 // Auth
 router.post("/login", adminLoginLimiter, function (req, res, next) {

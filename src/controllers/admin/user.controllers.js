@@ -1,4 +1,4 @@
-import userServices from "../use-cases/users/userServices.js";
+import userServices from "../../use-cases/users/userServices.js";
 import buildPostUser from "./post-user.js";
 import buildGetUsers from "./get-users.js";
 
