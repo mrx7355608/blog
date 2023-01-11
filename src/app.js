@@ -18,10 +18,12 @@ const app = express();
 
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors({
-	origin: appConfig.clientUrl,
-	credentials: true
-}));
+app.use(
+    cors({
+        origin: appConfig.clientUrl,
+        credentials: true,
+    })
+);
 app.use(hpp());
 app.use(mongoSanitize());
 // sessions setup
@@ -59,6 +61,7 @@ app.use(function (req, res, next) {
     return next(new Error("Page not found"));
 });
 // Error handler
+// eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
     const statusCode = err.statusCode || 500;
     return res.status(statusCode).json({ error: err.message });

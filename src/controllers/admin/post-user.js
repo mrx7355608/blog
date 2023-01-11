@@ -1,10 +1,17 @@
 export default function buildPostUser({ addUser }) {
     return async function (httpRequest) {
-        const userData = httpRequest.body;
-        const user = await addUser(userData);
-        return {
-            statusCode: 201,
-            body: { user },
-        };
+        try {
+            const userData = httpRequest.body;
+            const user = await addUser(userData);
+            return {
+                statusCode: 201,
+                body: { user },
+            };
+        } catch (err) {
+            return {
+                statusCode: 400,
+                body: { error: err.message },
+            };
+        }
     };
 }
