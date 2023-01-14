@@ -13,6 +13,7 @@ import passportSetup from "./utils/passportSetup.js";
 // Routers
 import blogRouter from "./routes/blog.routes.js";
 import adminRouter from "./routes/admin.routes.js";
+import errorHandler, { catch404 } from "./middlewares/errorHandler.js";
 
 const app = express();
 
@@ -56,15 +57,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/v1/blogs", blogRouter);
 app.use("/api/v1/42ecf845b32d0587e6c0", adminRouter);
 
-// Catch 404
-app.use(function (req, res, next) {
-    return next(new Error("Page not found"));
-});
-// Error handler
-// eslint-disable-next-line no-unused-vars
-app.use(function (err, req, res, next) {
-    const statusCode = err.statusCode || 500;
-    return res.status(statusCode).json({ error: err.message });
-});
+app.use(catch404); // Catch 404
+app.use(errorHandler); // Error handler
 
 export default app;

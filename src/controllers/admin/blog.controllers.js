@@ -5,6 +5,7 @@ import buildUpdateBlog from "./patch-blog.js";
 import buildCreateBlog from "./create-blog.js";
 import buildPatchPublishBlog from "./patch-publish-blog.js";
 import buildAdminGetOneBlog from "./admin-get-one-blog.js";
+import buildGetBlogStats from "./get-blog-stats.js";
 
 import blogServices from "../../use-cases/blogs/index.js";
 
@@ -32,10 +33,14 @@ const patchPublishBlog = buildPatchPublishBlog({
 const patchBlog = buildUpdateBlog({
     editBlogs: blogServices.editBlogs,
 });
+const getBlogStats = buildGetBlogStats({
+    listStats: blogServices.listBlogStats,
+});
 
 const adminBlogSubControllers = {
     getBlogs,
     getOneBlog,
+    getBlogStats,
     createBlog,
     updateBlogs,
     patchPublishBlog,

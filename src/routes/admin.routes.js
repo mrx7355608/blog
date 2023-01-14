@@ -31,6 +31,7 @@ router.get("/", function (req, res) {
 });
 
 // Blogs
+router.get("/stats", limiter, requestHandler(adminController.getBlogStats));
 router.get("/blogs/", limiter, requestHandler(adminController.getBlogs));
 router.get("/blogs/:id", limiter, requestHandler(adminController.getOneBlog));
 router.post("/blogs/", limiter, requestHandler(adminController.createBlog));

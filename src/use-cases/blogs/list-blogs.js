@@ -9,6 +9,10 @@ export default function buildListBlogs({ blogsDb }) {
         sort = sort === "old" ? { createdAt: 1 } : DEFAULT_SORT;
         const skip = page * limit - limit;
 
-        return await blogsDb.findAll({ filter, limit, sort, skip });
+        const allBlogs = await blogsDb.findAll({ filter, limit, sort, skip });
+        const publishedBlogs = allBlogs.filter(
+            (blog) => blog.published === true
+        );
+        return publishedBlogs;
     };
 }

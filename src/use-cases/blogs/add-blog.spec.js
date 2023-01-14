@@ -1,11 +1,12 @@
 import "dotenv/config";
 import buildAddBlogs from "./add-blog.js";
 import buildBlogsDb from "../../data-access/blogsDb.js";
+import AppError from "../../utils/AppError.js";
 
 import appConfig from "../../../config/appConfig.js";
 import { connectToDatabase, disconnectFromDatabase } from "../../../db/db.js";
 const blogsDb = buildBlogsDb();
-const addBlog = buildAddBlogs({ blogsDb });
+const addBlog = buildAddBlogs({ blogsDb, AppError });
 
 describe("Add Blog", () => {
     beforeAll(async () => {

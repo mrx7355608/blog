@@ -1,12 +1,13 @@
 import "dotenv/config";
 import buildEditBlogs from "./edit-blog.js";
+import AppError from "../../utils/AppError.js";
 import buildBlogsDb from "../../data-access/blogsDb.js";
 
 import appConfig from "../../../config/appConfig.js";
 import { connectToDatabase, disconnectFromDatabase } from "../../../db/db.js";
 
 const blogsDb = buildBlogsDb();
-const editBlog = buildEditBlogs({ blogsDb });
+const editBlog = buildEditBlogs({ blogsDb, AppError });
 
 describe("Edit Blog", () => {
     beforeAll(async () => {

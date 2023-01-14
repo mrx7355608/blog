@@ -1,9 +1,9 @@
 import makeBlog from "../../entities/blogs/buildBlogEntity.js";
 
-export default function buildAddBlogs({ blogsDb }) {
+export default function buildAddBlogs({ blogsDb, AppError }) {
     return async function (blogData) {
         if (!blogData) {
-            throw new Error("Blog data is missing");
+            throw new AppError("ValidationError", "Blog data is missing", 400);
         }
         if (typeof blogData.tags === "string") {
             blogData.tags = Array(blogData.tags);

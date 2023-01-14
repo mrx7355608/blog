@@ -1,17 +1,29 @@
 import makeBlog from "../../entities/blogs/buildBlogEntity.js";
 
-export default function buildPublishBlog({ blogsDb }) {
+export default function buildPublishBlog({ blogsDb, AppError }) {
     return async function (id) {
         if (!id) {
-            throw new Error("Provide blog id to publish that blog");
+            throw new AppError(
+                "ValidationError",
+                "Provide blog id to publish that blog",
+                400
+            );
         }
 
         const existingBlog = await blogsDb.findById(id);
         if (!existingBlog) {
-            throw new Error("Blog you are trying to publish does not exist");
+            throw new AppError(
+                "NotFoundError",
+                "Blog you are trying to publish does not exist",
+                404
+            );
         }
         if (existingBlog.published) {
-            throw new Error("Blog has been published already");
+            throw new AppError(
+                "BadRequestError",
+                "Blog has been published already",
+                400
+            );
         }
 
         const blog = makeBlog(existingBlog);

@@ -1,26 +1,39 @@
-export default function buildUserEntity({ hash, emailValidator, sanitize }) {
+export default function buildUserEntity({
+    hash,
+    emailValidator,
+    sanitize,
+    AppError,
+}) {
     return function ({ name, email, password }) {
         name = sanitize(name);
         email = sanitize(email);
         password = sanitize(password);
 
         if (!name) {
-            throw new Error("Name is required!");
+            throw new AppError("ValidationError", "Name is required!", 400);
         }
         if (name.length < 4) {
-            throw new Error("Name should be 4 characters long at least");
+            throw new AppError(
+                "ValidationError",
+                "Name should be 4 characters long at least",
+                400
+            );
         }
         if (!email) {
-            throw new Error("Email is required!");
+            throw new AppError("ValidationError", "Email is required!", 400);
         }
         if (emailValidator(email) == false) {
-            throw new Error("Invalid email");
+            throw new AppError("ValidationError", "Invalid email", 400);
         }
         if (!password) {
-            throw new Error("Password is required!");
+            throw new AppError("ValidationError", "Password is required!", 400);
         }
         if (password.length < 10) {
-            throw new Error("Password should be 10 characters long at least");
+            throw new AppError(
+                "ValidationError",
+                "Password should be 10 characters long at least",
+                400
+            );
         }
 
         return Object.freeze({

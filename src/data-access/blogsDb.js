@@ -21,6 +21,16 @@ export default function buildBlogsDb() {
         await BlogModel.findByIdAndUpdate(id, changes, { new: true });
     const remove = async (id) => await BlogModel.findByIdAndDelete(id);
 
+    const stats = async () => {
+        // Returns total num of published and un-published blogs.
+        const blogStats = await BlogModel.aggregate([
+            { $match: {} },
+            { $group: { _id: "$published", total: { $count: {} } } },
+            { $project: { published: "$_id", _id: 0, total: 1 } },
+        ]);
+        return blogStats;
+    };
+
     return {
         findAll,
         findOne,
@@ -28,5 +38,6 @@ export default function buildBlogsDb() {
         insert,
         update,
         remove,
+        stats,
     };
 }

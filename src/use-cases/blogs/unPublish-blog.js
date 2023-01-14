@@ -1,17 +1,29 @@
 import makeBlog from "../../entities/blogs/buildBlogEntity.js";
 
-export default function buildUnPublishBlogs({ blogsDb }) {
+export default function buildUnPublishBlogs({ blogsDb, AppError }) {
     return async function (id) {
         if (!id) {
-            throw new Error("Provide blog id to unpublish");
+            throw new AppError(
+                "ValidationError",
+                "Provide blog id to unpublish",
+                400
+            );
         }
 
         const existingBlog = await blogsDb.findById(id);
         if (!existingBlog) {
-            throw new Error("Blog you are trying to unpublish does not exist");
+            throw new AppError(
+                "NotFoundError",
+                "Blog you are trying to unpublish does not exist",
+                404
+            );
         }
         if (!existingBlog.published) {
-            throw new Error("Blog has not been published yet!");
+            throw new AppError(
+                "BadRequestError",
+                "Blog has not been published yet!",
+                400
+            );
         }
 
         const blog = makeBlog(existingBlog);
