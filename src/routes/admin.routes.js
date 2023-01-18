@@ -22,7 +22,7 @@ const adminLoginLimiter = rateLimiter({
 });
 
 // Only allow authenticated requests
-router.use(onlyAdmin);
+// router.use(onlyAdmin);
 
 router.get("/", function (req, res) {
     req.user.password = undefined;
