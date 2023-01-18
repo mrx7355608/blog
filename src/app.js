@@ -55,7 +55,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use("/api/v1/blogs", blogRouter);
-app.use("/api/v1/42ecf845b32d0587e6c0", adminRouter);
+app.use(`/api/v1/${appConfig.adminUrl}`, adminRouter);
 
 app.use(catch404); // Catch 404
 app.use(errorHandler); // Error handler

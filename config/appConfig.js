@@ -4,4 +4,5 @@ export default {
     sessionSecret: process.env.SESSION_SECRET,
     clientUrl: process.env.CLIENT_URL,
     env: process.env.NODE_ENV,
+    adminUrl: process.env.ADMIN_URL,
 };
