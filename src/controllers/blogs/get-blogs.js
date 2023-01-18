@@ -1,7 +1,7 @@
 export default function buildGetBlogs({ listBlogs }) {
     return async function (httpRequest) {
         // Filter un-wanted fields from query
-        const allowedFields = [" page", "sort", "limit", "title", "tags"];
+        const allowedFields = ["page", "sort", "limit", "title", "tags"];
         Object.keys(httpRequest.query).forEach((q) => {
             if (!allowedFields.includes(q)) delete httpRequest.query[q];
         });

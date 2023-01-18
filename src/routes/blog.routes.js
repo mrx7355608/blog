@@ -7,7 +7,7 @@ const router = Router();
 
 const limiter = rateLimiter({
     windowMs: 60 * 60 * 1000 * 2,
-    max: 10,
+    max: 30,
     legacyHeaders: false,
     message: { error: "Too many requests, try again later" },
     standardHeaders: false,

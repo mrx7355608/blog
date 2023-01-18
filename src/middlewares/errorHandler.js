@@ -6,7 +6,6 @@ export default function errorHandler(err, req, res, next) {
     const message = err.message;
     const statusCode = err.statusCode || 500;
     const errName = err.name;
-    console.log(errName);
 
     if (errName === "CastError") {
         return res.status(400).json({ error: "Invalid Id" });

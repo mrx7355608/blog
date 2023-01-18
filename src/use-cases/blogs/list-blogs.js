@@ -10,9 +10,6 @@ export default function buildListBlogs({ blogsDb }) {
         const skip = page * limit - limit;
 
         const allBlogs = await blogsDb.findAll({ filter, limit, sort, skip });
-        const publishedBlogs = allBlogs.filter(
-            (blog) => blog.published === true
-        );
-        return publishedBlogs;
+        return allBlogs;
     };
 }
