@@ -53,6 +53,7 @@ router.patch(
 
 // Users
 router.get("/users", limiter, requestHandler(adminController.getUsers));
+router.post("/users", limiter, requestHandler(adminController.postUser));
 
 // Auth
 router.post("/login", adminLoginLimiter, function (req, res, next) {
